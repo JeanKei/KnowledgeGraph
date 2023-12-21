@@ -10,7 +10,7 @@
   - Primitive type
     - [number](#number)
     - [string](#string)
-    - [Template literals (string) ES6](<#Template-literals-(string)-ES6>)
+    - [Template literals (string) ES6](#template-literals-string-es6)
     - [boolean](#boolean)
     - [null](#null)
     - [undefined](#undefined)

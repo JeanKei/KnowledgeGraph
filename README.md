@@ -609,3 +609,130 @@ const sum = numbers.reduce(
 // Метод reduce: Применяет функцию к каждому элементу массива, возвращая результирующее значение
 console.log(sum); // Результат: 15 (сумма всех элементов массива)
 ```
+
+### functions
+
+Функции — это объект первого класса. Это означает, что функцию можно использовать так же, как и другие типы данных: сохранять в переменную, передавать аргументом и возвращать из функции.
+
+Технически, функция — это объект JavaScript, у которого есть внутренний метод Call(), который добавляет возможность вызова функции.
+
+- **Хранение функции в переменной**
+
+```javascript
+// Присвоение анонимной функции переменной answer
+const answer = function () {
+  console.log("42!");
+};
+
+answer(); // Вызов функции через переменную
+// Результат: 42!
+```
+
+```javascript
+// Объявление функции
+function greet() {
+  console.log("Привет!");
+}
+
+// Присвоение функции переменной
+const greeting = greet;
+
+// Вызов функции через переменную
+greeting(); // Результат: Привет!
+```
+
+- **Передача функции в качестве аргумента другой функции**
+
+```javascript
+// Функция, принимающая функцию в качестве аргумента
+function sayHello(callback) {
+  callback();
+}
+
+// Функция, которую передаем в качестве аргумента
+function printHello() {
+  console.log("Hello!");
+}
+
+// Вызов функции с передачей функции в качестве аргумента
+sayHello(printHello); // Результат: Hello!
+```
+
+```javascript
+// Функция, принимающая функцию в качестве аргумента
+function applyOperation(x, y, operation) {
+  return operation(x, y);
+}
+
+// Функция сложения
+function add(a, b) {
+  return a + b;
+}
+
+// Функция умножения
+function multiply(a, b) {
+  return a * b;
+}
+
+// Передача функции в качестве аргумента
+console.log(applyOperation(5, 3, add)); // Результат: 8
+console.log(applyOperation(5, 3, multiply)); // Результат: 15
+```
+
+- **Возвращение функции из другой функции**
+
+```javascript
+// Функция, возвращающая функцию для умножения числа на множитель
+function multiplier(factor) {
+  return function (number) {
+    return number * factor;
+  };
+}
+
+// Создание функции для умножения на 2
+const double = multiplier(2);
+
+// Создание функции для умножения на 5
+const triple = multiplier(5);
+
+// Использование созданных функций
+console.log(double(4)); // Результат: 8 (4 * 2)
+console.log(triple(3)); // Результат: 15 (3 * 5)
+```
+
+```javascript
+// Функция, возвращающая другую функцию
+function createMultiplier(multiplier) {
+  return function (x) {
+    return x * multiplier;
+  };
+}
+
+// Создание функции умножения на 2
+const multiplyByTwo = createMultiplier(2);
+
+// Вызов функции, возвращенной из другой функции
+console.log(multiplyByTwo(5)); // Результат: 10
+```
+
+```javascript
+// Функция, возвращающая другую функцию
+function createGreeter(greeting) {
+  // Внутренняя функция, возвращаемая из внешней
+  return function (name) {
+    console.log(greeting + ", " + name + "!");
+  };
+}
+
+// Создание функции с приветствием "Привет"
+const greetHello = createGreeter("Привет");
+
+// Вызов возвращенной функции
+greetHello("Алиса"); // Результат: Привет, Алиса!
+
+// Создание функции с приветствием "Здравствуй"
+const greetHi = createGreeter("Здравствуй");
+
+// Вызов возвращенной функции
+greetHi("Боб"); // Результат: Здравствуй, Боб!
+```
